@@ -55,9 +55,18 @@ public class VentanaAgregar extends JFrame {
 		cbGenero.setBounds(219, 114, 126, 22);
 		contentPane.add(cbGenero);
 		
+		cbGenero.addItem(new Categoria("Seleccione un genero"));
+		cbGenero.addItem(new Categoria("Terror"));
+		cbGenero.addItem(new Categoria("Accion"));
+		cbGenero.addItem(new Categoria("Suspenso"));
+		cbGenero.addItem(new Categoria("Romantica"));
+		
+		
 		btnAceptar = new JButton("ACEPTAR");
 		btnAceptar.setBounds(97, 164, 116, 25);
 		contentPane.add(btnAceptar);
 		setTitle("Agregar Pelicula");
+		
+		
 	}
 }

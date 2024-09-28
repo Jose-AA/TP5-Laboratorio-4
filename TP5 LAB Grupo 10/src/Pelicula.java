@@ -1,9 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class Pelicula {
 
     private final int id;
     private static int contadorId = 1;
     private String nombre;
     private Categoria categoria;
+    
+    public static ArrayList<Pelicula> listaPeliculas = new ArrayList<>();
 
     public Pelicula(String nombre, Categoria categoria) {
         this.id = contadorId;
@@ -35,6 +41,6 @@ public class Pelicula {
 
     @Override
     public String toString() {
-        return "Pelicula: " + nombre + " - Categoría: " + categoria.getNombre();
+        return "Nombre: " + nombre + " - Categoría: " + categoria.getNombre();
     }
 }

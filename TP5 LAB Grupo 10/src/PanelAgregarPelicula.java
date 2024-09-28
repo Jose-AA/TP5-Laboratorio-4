@@ -1,9 +1,12 @@
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelAgregarPelicula extends JPanel {
 
@@ -13,7 +16,7 @@ public class PanelAgregarPelicula extends JPanel {
 		 private JLabel lblTxtID;
 		 private JLabel lblNombre;
 		 private JLabel lblGenero;
-		 private JComboBox<Categoria> cbGenero;
+		 private JComboBox<Categoria>cbGenero;
 		 private JButton btnAceptar;
 
 		    public PanelAgregarPelicula() {
@@ -54,12 +57,38 @@ public class PanelAgregarPelicula extends JPanel {
 		        btnAceptar = new JButton("ACEPTAR");
 		        btnAceptar.setBounds(97, 164, 116, 25);
 		        add(btnAceptar);
-
+		        btnAceptar.addActionListener(new ActionListener() {
+		            @Override
+		            public void actionPerformed(ActionEvent e) {
+		                agregarPelicula();
+		            }
+		        });
 		        lblTxtID = new JLabel("");
 		        lblTxtID.setHorizontalAlignment(SwingConstants.CENTER);
 		        lblTxtID.setBounds(259, 34, 46, 14);
 		        add(lblTxtID);
 		        lblTxtID.setText(Pelicula.devuelveProximoId());
-	}
+		     
+		    }
+		        private void agregarPelicula() {
+		            String nombrePelicula = txtNombre.getText();
+		            Categoria categoriaPelicula = (Categoria)cbGenero.getSelectedItem();
 
-}
+		            if (nombrePelicula.isEmpty()) {
+		                JOptionPane.showMessageDialog(null, "Debe ingresar un nombre");
+		                return;
+		            }
+		            if (categoriaPelicula == null || categoriaPelicula.getNombre().equals("Seleccione un genero")) {
+		                JOptionPane.showMessageDialog(null, "Debe seleccionar un género");
+		                return;
+		            }
+        
+		            Pelicula nuevaPelicula = new Pelicula(nombrePelicula, categoriaPelicula);
+		            Pelicula.listaPeliculas.add(nuevaPelicula);		            
+		            JOptionPane.showMessageDialog(null, "Película agregada: " + nuevaPelicula.toString());
+
+		            lblTxtID.setText(Pelicula.devuelveProximoId());
+		            txtNombre.setText("");
+		            cbGenero.setSelectedIndex(0);
+		        }
+		    }

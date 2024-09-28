@@ -6,14 +6,15 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 public class VentanaAgregar extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtID;
 	private JTextField txtNombre;
 	private JLabel lblID;
+	private JLabel lblTxtID;
 	private JLabel lblNombre;
 	private JLabel lblGenero;
 	private JComboBox cbGenero;
@@ -21,6 +22,7 @@ public class VentanaAgregar extends JFrame {
 
 
 	public VentanaAgregar() {
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -31,12 +33,6 @@ public class VentanaAgregar extends JFrame {
 		lblID = new JLabel("ID");
 		lblID.setBounds(97, 34, 12, 16);
 		contentPane.add(lblID);
-		
-		txtID = new JTextField();
-		txtID.setEditable(false);
-		txtID.setBounds(219, 31, 126, 22);
-		contentPane.add(txtID);
-		txtID.setColumns(10);
 		
 		lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(97, 75, 45, 16);
@@ -70,6 +66,12 @@ public class VentanaAgregar extends JFrame {
 		btnAceptar = new JButton("ACEPTAR");
 		btnAceptar.setBounds(97, 164, 116, 25);
 		contentPane.add(btnAceptar);
+		
+		lblTxtID = new JLabel("");
+		lblTxtID.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTxtID.setBounds(259, 34, 46, 14);
+		contentPane.add(lblTxtID);
+		lblTxtID.setText(Pelicula.devuelveProximoId());
 		setTitle("Agregar Pelicula");
 		
 		

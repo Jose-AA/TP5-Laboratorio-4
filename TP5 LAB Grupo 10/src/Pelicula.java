@@ -27,6 +27,11 @@ public class Pelicula {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+    
+	public static String devuelveProximoId()
+	{
+		return Integer.toString(contadorId);
+	}
 
     @Override
     public String toString() {

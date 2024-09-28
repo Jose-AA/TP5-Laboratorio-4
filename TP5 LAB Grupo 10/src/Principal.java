@@ -6,7 +6,7 @@ public class Principal {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					 VentanaPrincipal frame = new VentanaPrincipal();
+					 VentanaMain frame = new VentanaMain();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -1,4 +1,9 @@
 import javax.swing.JPanel;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Comparator;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -28,9 +33,16 @@ public class PanelListarPeliculas extends JPanel {
     }
     
     public void cargarPeliculas() {
-        dlModel.clear(); 
-        for (Pelicula pelicula : Pelicula.listaPeliculas) {
+        dlModel.clear();
+        List<Pelicula> listaPeliculas = Pelicula.listaPeliculas;
+        Collections.sort(listaPeliculas, new Comparator<Pelicula>() {
+            @Override
+            public int compare(Pelicula pelicula1, Pelicula pelicula2) {
+                return pelicula1.getNombre().compareTo(pelicula2.getNombre());
+            }
+        });
+        for (Pelicula pelicula : listaPeliculas) {
             dlModel.addElement(pelicula.toString());
         }
     }
-}
+    }

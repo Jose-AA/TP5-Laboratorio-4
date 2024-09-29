@@ -71,7 +71,7 @@ public class PanelAgregarPelicula extends JPanel {
 		     
 		    }
 		        private void agregarPelicula() {
-		            String nombrePelicula = txtNombre.getText();
+		            String nombrePelicula = txtNombre.getText().trim();
 		            Categoria categoriaPelicula = (Categoria)cbGenero.getSelectedItem();
 
 		            if (nombrePelicula.isEmpty()) {

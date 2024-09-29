@@ -75,13 +75,22 @@ public class PanelAgregarPelicula extends JPanel {
 		            Categoria categoriaPelicula = (Categoria)cbGenero.getSelectedItem();
 
 		            if (nombrePelicula.isEmpty()) {
-		                JOptionPane.showMessageDialog(null, "Debe ingresar un nombre");
+		                JOptionPane.showMessageDialog(null, "Debe ingresar un nombre", "Error", JOptionPane.ERROR_MESSAGE);
 		                return;
 		            }
 		            if (categoriaPelicula == null || categoriaPelicula.getNombre().equals("Seleccione un genero")) {
-		                JOptionPane.showMessageDialog(null, "Debe seleccionar un género");
+		                JOptionPane.showMessageDialog(null, "Debe seleccionar un género", "Error", JOptionPane.ERROR_MESSAGE);
 		                return;
 		            }
+		            
+		            boolean repetida = Pelicula.listaPeliculas.stream()
+		                    .anyMatch(p -> p.getNombre().equalsIgnoreCase(nombrePelicula) 
+		                                && p.getCategoria().equals(categoriaPelicula));
+
+		                if (repetida) {
+		                    JOptionPane.showMessageDialog(null, "La película ya existe en el sistema.", "Error", JOptionPane.ERROR_MESSAGE);
+		                    return;
+		                }
         
 		            Pelicula nuevaPelicula = new Pelicula(nombrePelicula, categoriaPelicula);
 		            Pelicula.listaPeliculas.add(nuevaPelicula);		            
